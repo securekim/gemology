@@ -2,8 +2,8 @@ var express     = require('express'),
     app         = express();
     bodyParser = require ("body-parser")
  
-//web 폴더 밑에 있는 파일들을 요청이 있을때 접근 가능하도록 합니다.
-app.use(express.static(__dirname)); 
+//public 폴더 밑에 있는 파일들을 요청이 있을때 접근 가능하도록 합니다.
+app.use(express.static(__dirname+"/public")); 
 app.use(bodyParser.json());
  
 //다른 경로를 요청했을때, 실제 그 경로에 있는 파일을 전달합니다.
