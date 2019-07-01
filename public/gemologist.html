@@ -50,7 +50,7 @@
 						<section class="wrapper style5">
 							<div class="inner">
 								<section>
-									<h3>DIAMONDS</h3>
+									<h3>Diamond Evaluation</h3>
 									<div class="table-wrapper">
 										<table>
 											<thead>
@@ -107,17 +107,20 @@
 
 
 								<section>
-									<h4>Regist Certificate</h4>
-									<form method="post" action="#">
+									<h4>Check the Quality of Diamond</h4>
+									<form method="post" action="/evaluation">
 										<div class="row gtr-uniform">
-											<div class="col-7 col-12-xsmall">
+											<div class="col-5 col-12-xsmall">
 												<input type="text" name="demo-account" id="demo-account" value="" placeholder="Customer's account" />
 											</div>
 											<div class="col-3 col-12-xsmall">
-												<input type="text" name="demo-price" id="demo-price" value="" placeholder="Price" />
+												<input type="text" name="demo-code" id="demo-code" value="" placeholder="DIA Code" />
 											</div>
 											<div class="col-2 col-12-xsmall">
 												<input type="text" name="demo-carat" id="demo-carat" value="" placeholder="Carat" />
+											</div>
+											<div class="col-2 col-12-xsmall"> 
+												<input type="text" class="button disabled" name="demo-price" id="demo-price" readonly="readonly" value="" placeholder="Price" />
 											</div>
 											<div class="col-12">
 												<select name="demo-category" id="demo-cut">

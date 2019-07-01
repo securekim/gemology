@@ -6,6 +6,10 @@ var express     = require('express'),
 app.use(express.static(__dirname+"/public")); 
 app.use(bodyParser.json());
  
+app.post('/evaluation', (req,res)=>{
+    res.send(403, '블록체인에 등록 중입니다. 몇 주만 기다려 주세요.');  
+});
+
 //다른 경로를 요청했을때, 실제 그 경로에 있는 파일을 전달합니다.
 app.get('/*', function(req, res) { 
  
