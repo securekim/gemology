@@ -2228,12 +2228,16 @@ input, select, textarea {
 		@media screen and (max-width: 480px) {
 
 			ul.actions:not(.fixed) {
-				-moz-flex-direction: column;
+				/* -moz-flex-direction: column;
 				-webkit-flex-direction: column;
 				-ms-flex-direction: column;
 				flex-direction: column;
 				margin-left: 0;
-				width: 100% !important;
+				width: 100% !important; */
+
+				justify-content: center;
+				width: 100%;
+				margin-left: 0;
 			}
 
 				ul.actions:not(.fixed) li {
