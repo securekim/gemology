@@ -2487,6 +2487,33 @@ input, select, textarea {
 			.button.primary:active {
 				background-color: #eb341c !important;
 			}
+/* Add Success */
+			input[type="submit"].success,
+			input[type="reset"].success,
+			input[type="button"].success,
+			button.success,
+			.button.success {
+				background-color: #28a745;
+				box-shadow: none !important;
+				color: #ffffff !important;
+			}
+
+			input[type="submit"].success:hover,
+			input[type="reset"].success:hover,
+			input[type="button"].success:hover,
+			button.success:hover,
+			.button.success:hover {
+				background-color: #368648 !important;
+			}
+
+			input[type="submit"].success:active,
+			input[type="reset"].success:active,
+			input[type="button"].success:active,
+			button.success:active,
+			.button.success:active {
+				background-color: #25c74a !important;
+			}
+
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
 		input[type="reset"].disabled,
