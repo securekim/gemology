@@ -8,6 +8,7 @@
 		</style>
 		<!-- loading.css -->
 		<link href="assets/css/all.css" rel="stylesheet">
+		<link href="assets/css/diamond.css" rel="stylesheet">
 		<!-- main.css -->
 		<div id="loading">
 			<loading id = "loading-loading" class="loading-wrapper dark" alt = "Loading indicator">
@@ -31,13 +32,15 @@
 						<nav id="nav">
 							<ul>
 								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<a href="#menu" class="menuToggle" onclick="document.getElementsByClassName('diamond')[0].classList.toggle('intro')"><span>Menu</span></a>
 									<div id="menu">
 										<ul>
-											<li><a href="gemologist.html">Gemologist</a></li>
-											<li><a href="wholesaler.html">Wholesaler</a></li>
-											<li><a href="#">Sign Up</a></li>
-											<li><a href="#">Log In</a></li>
+											<li><a href="/" class="icon fa-diamond"> DIACHAIN</a></li>
+											<li><a href="gemologist.html" class="icon fa-balance-scale"> Gemologist</a></li>
+											<li><a href="wholesaler.html" class="icon fa-bank"> Wholesaler</a></li>
+											<li><a href="retailer.html" class="icon fa-street-view"> Retailer</a></li>
+											<li><a href="#" class="icon fa-sign-in"> Sign Up</a></li>
+											<li><a href="#" class="icon fa-id-card"> Log In</a></li>
 										</ul>
 									</div>
 								</li>
@@ -47,18 +50,113 @@
 				<!-- Banner -->
 					<section id="banner">
 						<div class="inner">
-							<h2>DIACHAIN</h2>
-							<p>for DIAMOND<br />
+							<h2> DIACHAIN</h2>
+							<p> for DIAMOND<br />
 							<!-- You won't be disappointed.<br />-->
 							<!-- This is my <a href="https://github.com/securekim">Github</a>.</p> -->
 							<ul class="actions special">
 								<!-- <li><a href="https://blog.securekim.com" class="button primary">BLOG</a></li> -->
+								<div class='diamond intro'>
+										<div class='diamond__base'>
+										<div class='diamond-bottom'>
+											<div class='diamond-slice diamond-slice--0'>
+											<div class='diamond-slice-a'>
+												<div class='pavilion'>
+												<div class='pavilion__face'></div>
+												</div>
+												<div class='diamond-slice-b'>
+												<div class='facet'></div>
+												<div class='top'></div>
+												</div>
+											</div>
+											</div>
+											<div class='diamond-slice diamond-slice--1'>
+											<div class='diamond-slice-a'>
+												<div class='pavilion'>
+												<div class='pavilion__face'></div>
+												</div>
+												<div class='diamond-slice-b'>
+												<div class='facet'></div>
+												<div class='top'></div>
+												</div>
+											</div>
+											</div>
+											<div class='diamond-slice diamond-slice--2'>
+											<div class='diamond-slice-a'>
+												<div class='pavilion'>
+												<div class='pavilion__face'></div>
+												</div>
+												<div class='diamond-slice-b'>
+												<div class='facet'></div>
+												<div class='top'></div>
+												</div>
+											</div>
+											</div>
+											<div class='diamond-slice diamond-slice--3'>
+											<div class='diamond-slice-a'>
+												<div class='pavilion'>
+												<div class='pavilion__face'></div>
+												</div>
+												<div class='diamond-slice-b'>
+												<div class='facet'></div>
+												<div class='top'></div>
+												</div>
+											</div>
+											</div>
+											<div class='diamond-slice diamond-slice--4'>
+											<div class='diamond-slice-a'>
+												<div class='pavilion'>
+												<div class='pavilion__face'></div>
+												</div>
+												<div class='diamond-slice-b'>
+												<div class='facet'></div>
+												<div class='top'></div>
+												</div>
+											</div>
+											</div>
+											<div class='diamond-slice diamond-slice--5'>
+											<div class='diamond-slice-a'>
+												<div class='pavilion'>
+												<div class='pavilion__face'></div>
+												</div>
+												<div class='diamond-slice-b'>
+												<div class='facet'></div>
+												<div class='top'></div>
+												</div>
+											</div>
+											</div>
+											<div class='diamond-slice diamond-slice--6'>
+											<div class='diamond-slice-a'>
+												<div class='pavilion'>
+												<div class='pavilion__face'></div>
+												</div>
+												<div class='diamond-slice-b'>
+												<div class='facet'></div>
+												<div class='top'></div>
+												</div>
+											</div>
+											</div>
+											<div class='diamond-slice diamond-slice--7'>
+											<div class='diamond-slice-a'>
+												<div class='pavilion'>
+												<div class='pavilion__face'></div>
+												</div>
+												<div class='diamond-slice-b'>
+												<div class='facet'></div>
+												<div class='top'></div>
+												</div>
+											</div>
+											</div>
+										</div>
+										</div>
+									</div>
 							</ul>
 						</div>
-						<a href="#one" class="more scrolly">Read More</a>
+						<a href="#one" onclick="document.getElementsByClassName('diamond')[0].classList.toggle('intro')" class="more scrolly">Read More</a>
 					</section>
 
 				<!-- One -->
+				
 					<section id="one" class="wrapper style1 special">
 						<div class="inner">
 							<header class="major">
@@ -78,7 +176,6 @@
 							</ul>
 						</div>
 					</section>
-
 				<!-- Two -->
 					<section id="two" class="wrapper alt style2">
 						<section class="spotlight">
@@ -94,11 +191,10 @@
 								</p>
 							</div>
 						</section>
-						
 					</section>
 
 				<!-- Three -->
-					<!-- <section id="three" class="wrapper style3 special">
+					<!-- <section id="three" class="wrapper style2 special">
 						<div class="inner">
 							<header class="major">
 								<h2>Accumsan mus tortor nunc aliquet</h2>
@@ -106,30 +202,7 @@
 								fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
 							</header>
 							<ul class="features">
-								<li class="icon fa-paper-plane-o">
-									<h3>Arcu accumsan</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon fa-laptop">
-									<h3>Ac Augue Eget</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon fa-code">
-									<h3>Mus Scelerisque</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon fa-headphones">
-									<h3>Mauris Imperdiet</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon fa-heart-o">
-									<h3>Aenean Primis</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon fa-flag-o">
-									<h3>Tortor Ut</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
+							
 							</ul>
 						</div>
 					</section> -->
