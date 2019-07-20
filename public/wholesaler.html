@@ -59,10 +59,11 @@
 											<thead>
 												<tr>
 													<th>DIA Code</th>
-													<th>Retailers</th>
-													<th>Rental Fee</th>
+													<th>OwnerID</th>
+													<th>Price</th>
 													<th>Status</th>
-													<th>Emergency</th>
+													<!-- Acquire / To Rent / Rented / Sold-->
+													<th>Certificate</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -71,14 +72,14 @@
 													<td>COSMOS_fsfj3w5kle2asdasdwe1</td>
 													<td>29.99</td>
 													<td><Button class="button small secondary icon fa-retweet">Rent</td>
-													<td><Button class="button small primary icon fa-balance-scale">Report</td>
+													<td><Button class="button small success icon fa-download">Cert</Button></td>
 												</tr>
 												<tr>
 													<td>5131234</td>
 													<td>COSMOS_fsfj3w5kle2asdasdwe1</td>
 													<td>19.99</td>
 													<td><Button class="button small secondary icon fa-retweet">Rent</td>
-													<td><Button class="button small primary icon fa-balance-scale">Report</td>
+													<td><Button class="button small success icon fa-download">Cert</Button></td>
 												</tr>
 												<tr>
 													<td>7142534</td>
@@ -86,21 +87,21 @@
                                                     <td>29.99</td>
                                                     <!-- Primary, Secondary -->
 													<td><Button class="button small secondary icon fa-retweet disabled">Rent</td>
-													<td><Button class="button small secondary icon fa-balance-scale disabled">Report</td>
+														<td><Button class="button small success icon fa-download disabled">Cert</Button></td>
 												</tr>
 												<tr>
 													<td>7544546</td>
 													<td>COSMOS_fsfj3w5kle2asdasdwe1</td>
 													<td>19.99</td>
 													<td><Button class="button small success icon fa-diamond">Sell</td>
-                                                    <td><Button class="button small secondary icon fa-balance-scale disabled">Report</td>
+													<td><Button class="button small success icon fa-download">Cert</Button></td>
 												</tr>
 												<tr>
 													<td>7942634</td>
 													<td>COSMOS_fsfj3w5kle2asdasdwe1</td>
 													<td>29.99</td>
 													<td><Button class="button small success icon fa-diamond">Sell</td>
-                                                    <td><Button class="button small secondary icon fa-balance-scale disabled">Report</td>
+													<td><Button class="button small success icon fa-download">Cert</Button></td>
 												</tr>
 											</tbody>
 											<!-- <tfoot>
@@ -120,14 +121,14 @@
 									<h4>Rental</h4>
 									<form method="post" action="/evaluation">
 										<div class="row gtr-uniform">
-											<div class="col-5 col-12-xsmall">
-												<input type="text" name="demo-account" id="demo-account" value="" placeholder="Retailer's account" />
-											</div>
-											<div class="col-3 col-12-xsmall">
-												<input type="text" name="demo-code" id="demo-code" value="" placeholder="DIA Code" />
+											<div class="col-4 col-12-xsmall">
+												<input type="text" name="demo-account" id="demo-account" value="" placeholder="DIA Code" />
 											</div>
 											<div class="col-4 col-12-xsmall">
-												<input type="text" name="demo-carat" id="demo-carat" value="" placeholder="Rental Fee" />
+												<input type="text" name="demo-code" id="demo-code" value="" placeholder="Price" />
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<input type="text" name="demo-deposit" id="demo-deposit" value="" placeholder="Deposit" />
 											</div>
 											<div class="col-12">
 												<ul class="actions">
