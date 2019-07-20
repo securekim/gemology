@@ -55,45 +55,51 @@
 								<section>
 									<h3>Diamond Evaluation</h3>
 									<div class="table-wrapper">
-										<table>
+										<table id="table">
 											<thead>
 												<tr>
 													<th>DIA Code</th>
-													<th>Information</th>
+													<th>Wholesaler</th>
 													<th>Price</th>
+													<th>Status</th>
 													<th>Certificate</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
-													<td>4091234(한미)</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>4091234</td>
+													<td>cosmos1ulq2cqqscnvezypu9prcj6jvuyhf5jz7ckak8e</td>
 													<td>29.99</td>
-													<td><a href="#" class="button small success icon fa-download">Cert</a></td>
+													<td><a href="#" class="button small success icon fa-thumbs-up"> Transfered </a></td>
+													<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
 												<tr>
-													<td>5131234(한미)</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>5131234</td>
+													<td>cosmos1ulq2cqqscnvezypu9prcj6jvuyhf5jz7ckak8e</td>
 													<td>19.99</td>
-													<td><a href="#" class="button small success icon fa-download">Cert</a></td>
+													<td><a href="#" class="button small success icon fa-thumbs-up"> Transfered </a></td>
+													<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
 												<tr>
-													<td>7142534(한미)</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>7142534</td>
+													<td>cosmos1ulq2cqqscnvezypu9prcj6jvuyhf5jz7ckak8e</td>
 													<td>29.99</td>
-													<td><a href="#" class="button small success icon fa-download">Cert</a></td>
+													<td><a href="#" class="button small success icon fa-thumbs-up"> Transfered </a></td>
+													<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
 												<tr>
-													<td>7544546(한미)</td>
-													<td>Vitae integer tempus condimentum.</td>
+													<td>7544546</td>
+													<td>cosmos23lrasdfgsczvszyfghjrcj6jvre2rew2gfdsa7</td>
 													<td>19.99</td>
-													<td><a href="#" class="button small success icon fa-download">Cert</a></td>
+													<td><a href="#" class="button small primary icon fa-thumbs-down">Need Transfer</a></td>
+													<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
 												<tr>
-													<td>7942634(한미)</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>7942634</td>
+													<td>cosmos23lrasdfgsczvszyfghjrcj6jvre2rew2gfdsa7</td>
 													<td>29.99</td>
-													<td><a href="#" class="button small success icon fa-download">Cert</a></td>
+													<td><a href="#" class="button small primary icon fa-thumbs-down">Need Transfer</a></td>
+													<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
 											</tbody>
 											<!-- <tfoot>
@@ -111,19 +117,19 @@
 
 								<section>
 									<h4>Grading Report</h4>
-									<form method="post" action="/evaluation">
+									<form method="post">
 										<div class="row gtr-uniform">
-											<div class="col-5 col-12-xsmall">
-												<input type="text" name="demo-account" id="demo-account" value="" placeholder="Wholesaler's account" />
-											</div>
 											<div class="col-3 col-12-xsmall">
 												<input type="text" name="demo-code" id="demo-code" value="" placeholder="DIA Code" />
 											</div>
-											<div class="col-2 col-12-xsmall">
-												<input type="text" name="demo-carat" id="demo-carat" value="" placeholder="Carat" />
+											<div class="col-5 col-12-xsmall">
+												<input type="text" name="demo-account" id="demo-account" value="" placeholder="Wholesaler" />
 											</div>
 											<div class="col-2 col-12-xsmall"> 
-												<input type="text" name="demo-price" id="demo-price" value="" placeholder="Fee" />
+												<input type="text" name="demo-price" id="demo-price" value="" placeholder="Price" />
+											</div>
+											<div class="col-2 col-12-xsmall">
+												<input type="text" name="demo-carat" id="demo-carat" value="" placeholder="Carat" />
 											</div>
 											<div class="col-12">
 												<select name="demo-category" id="demo-cut">
@@ -157,21 +163,14 @@
 															<option value="5">Very strong</option>
 														</select>
 													</div>
-													<div class="col-3 col-12-small">
-														<input type="radio" id="demo-priority-DG" name="demo-priority" checked>
-														<label for="demo-priority-DG">D~G</label>
-													</div>
-													<div class="col-3 col-12-small">
-														<input type="radio" id="demo-priority-HM" name="demo-priority">
-														<label for="demo-priority-HM">H~M</label>
-													</div>
-													<div class="col-3 col-12-small">
-														<input type="radio" id="demo-priority-NR" name="demo-priority">
-														<label for="demo-priority-NR">N~R</label>
-													</div>
-													<div class="col-3 col-12-small">
-														<input type="radio" id="demo-priority-SZ" name="demo-priority">
-														<label for="demo-priority-SZ">S~Z</label>
+													<div class="col-12">
+														<select name="demo-priority" id="demo-priority">
+															<option value="">- Priority -</option>
+															<option value="1">D-G</option>
+															<option value="2">H-M</option>
+															<option value="3">N-R</option>
+															<option value="4">S-Z</option>
+														</select>
 													</div>
 											<div class="col-6 col-12-small">
 												<input type="checkbox" id="demo-copy" name="demo-copy">
@@ -182,8 +181,7 @@
 											</div>
 											<div class="col-12">
 												<ul class="actions">
-													<li><input type="submit" value="Send Certificate" class="success" /></li>
-
+													<li><a class="button small success" onclick="submitReport()">Send Report</a></li>
 													<!-- <li><a href="#" class="button small primary icon fa-upload">Cert</li> -->
 
 													<div class="input-file" style ="display: -webkit-box; margin-left: 10px;">
@@ -226,6 +224,8 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/sweetalert2.all.min.js"></script>
 			<script src="assets/js/table.js"></script>
+			<script src="assets/js/gemologist.js"></script>
 	</body>
 </html>
