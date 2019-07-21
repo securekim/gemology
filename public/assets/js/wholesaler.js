@@ -139,7 +139,7 @@ function submitRent(){
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, report it!'
+        confirmButtonText: 'Yes, rent it!'
       }).then((result) => {
         if (result.value) {
             $.ajax({ 

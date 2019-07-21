@@ -12,17 +12,6 @@ var blockchain = require('./blockchain.js');
 var wss = new WebSocketServer({port: 3100});
 var urlencodedparser = bodyparser.urlencoded({extended:false})
 var CODES = [
-    {
-    code : "123",
-    account : "cosmos123",
-    price : "123",
-    status : "" 
-    }, {
-    code : "123",
-    account : "cosmos123",
-    price : "123",
-    status : "" 
-    }
 ]
 var ACCOUNTS = [
 
@@ -58,23 +47,28 @@ app.get('/gemologist/getcodes',urlencodedparser, (req,res)=>{
     blockchain.gemologist_getList(function(err, resultArr, stderr) {
         if(err){
             res.send(500, stderr);
-         }
+         } else {
          res.send(200, resultArr.toString());  
-       });
+         }
+    });
     console.log(req.body);
 });
 
 app.post('/gemologist/report',urlencodedparser, (req,res)=>{
-    var measures = {carat: req.body.carat, cut: req.body.cut.replace(' ',''), clarity: req.body.clarity.replace(' ',''), fluorescence: req.body.fluorescence, priority: req.body.priority};
+    var measures = {carat: req.body.carat.replace(/ /gi,""), cut: req.body.cut.replace(/ /gi,""), clarity: req.body.clarity.replace(/ /gi,""), fluorescence: req.body.fluorescence.replace(/ /gi,""), priority: req.body.priority};
     blockchain.gemologist_buyCode(req.body.code, req.body.price, 'gemologist', measures,function(err, stdout, stderr) {
         if(err){
             res.send(500, stderr);
+         } else {
+            res.send(200, stdout);
          }
-         res.send(200, stdout);  
        });
+       if(search(req.body.code) == -1){
+                CODES.push({code : req.body.code, account : req.body.account, price : req.body.price, status:"NEEDTRANSFER"});
+       }
     console.log(req.body);
-    res.send(200, '블록체인에 등록 중입니다. 몇 주만 기다려 주세요.');
 });
+//"Command failed: /home/securekim/workspace/diachain/gemology/bin/dccli tx nameservice set-code avc 124 TripleExcellent Flawless Very strong D-G --from gemologist
 
 app.post('/wholesaler/rent',urlencodedparser, (req,res)=>{
     //req.body.value
@@ -84,6 +78,13 @@ app.post('/wholesaler/rent',urlencodedparser, (req,res)=>{
     res.send(200, {code:req.body.code, price:req.body.price});  
 });
 
+app.post('/wholesaler/transfer',urlencodedparser, (req,res)=>{
+    //req.body.value
+    console.log(req.body);
+    idx = search(req.body.code);
+    CODES[idx].status = "TRANSFERED";
+    res.send(200, '블록체인에 등록 중입니다. 몇 주만 기다려 주세요.');  
+});
 
 app.post('/wholesaler/confirmRent',urlencodedparser, (req,res)=>{
     //req.body.value
@@ -94,16 +95,23 @@ app.post('/wholesaler/confirmRent',urlencodedparser, (req,res)=>{
     res.send(200, {code:req.body.code});  
 });
 
-app.get('/codes',(req,res)=>{
-    res.send(CODES);
 
-    
-    blockchain.gemologist_getList(function(err, resultArr, stderr) {
-     if(err){
-         res.send(500, stderr);
-      }
-      res.send(200, resultArr.toString());  
-    });
+app.post('/retailer/rent',urlencodedparser, (req,res)=>{
+    //req.body.value
+    console.log(req.body);
+    res.send(200, '블록체인에 등록 중입니다. 몇 주만 기다려 주세요.');  
+});
+
+app.get('/codes',(req,res)=>{
+    //res.send(CODES);
+    res.send(CODES);
+    // blockchain.gemologist_getList(function(err, resultArr, stderr) {
+    //  if(err){
+    //      res.send(500, stderr);
+    //   } else {
+    //     res.send(200, resultArr.toString());
+    //   }
+    // });
     console.log(req.body);
 })
 
@@ -143,3 +151,8 @@ wss.on('connection', (ws) => {
 
 
 app.listen(80); //1024 이하의 포트는 특정 cap 권한이 필요합니다.
+
+process.on('uncaughtException', function (err) {
+	//예상치 못한 예외 처리
+	console.log('uncaughtException 발생 : ' + err);
+});

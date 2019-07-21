@@ -45,7 +45,7 @@ function submitReport(){
                       ADD_GEMOLOGIST(reportData.code,reportData.account,reportData.price,"NEEDTRANSFER")
                 }
                 , error: function(jqXHR, textStatus, err){
-                    alert('text status '+textStatus+', err '+err)
+                    alert(jqXHR+'text status '+textStatus+', err '+err)
                 }
              })
         }

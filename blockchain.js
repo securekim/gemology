@@ -10,21 +10,36 @@ var dcd = __dirname+'/bin/dcd'
 //         console.log('exec error: ' + error);
 //     }
 // });
-
-exports.init = function init(callback){
+//init();
+function init(){
 // killall nsd
 // killall nscli
 // rm -rf ~/.ns*
+    try{
     ps.execSync("killall dcd");
+    }catch(e){}
+
+    try{
     ps.execSync("killall dccli");
-    ps.execSync("rm -rf ~/.ns*");
-
+}catch(e){}
+try{
+ps.execSync("rm -rf ~/.ns*");
+}catch(e){}
+try{
     ps.execSync(dcd+" unsafe-reset-all");
+}catch(e){}
+    try{
     ps.execSync(dcd+" init securekim --chain-id diachain");
+}catch(e){}
+    try{
     ps.execSync(dccli+" keys add gemologist");
+}catch(e){}
+    try{
     ps.execSync(dccli+" keys add wholesaler");
+}catch(e){}
+    try{
     ps.execSync(dccli+" keys add retailer");
-
+}catch(e){}
     ps.execSync(dcd+" add-genesis-account $("+dccli+" keys show gemologist -a) 100nametoken,100000000stake");
     ps.execSync(dcd+" add-genesis-account $("+dccli+" keys show wholesaler -a) 1500nametoken,100000000stake");
     ps.execSync(dcd+" add-genesis-account $("+dccli+" keys show retailer -a) 1000nametoken,100000000stake");
@@ -38,9 +53,8 @@ exports.init = function init(callback){
 //    ps.execSync(dcd+" gentx --name wholesaler");
 //    ps.execSync(dcd+" gentx --name retailer");
 
-    ps.exec(dcd+" start", (err,std,stderr)=>{
-        callback(err, std, stderr);
-    });
+    ps.execSync(dcd+" collect-gentxs");
+    ps.exec(dcd+" start&")
 }
 
 //buy code and set code
