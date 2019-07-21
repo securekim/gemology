@@ -94,10 +94,10 @@ function getEnable(boolean){
     return " disabled"
 }
 
-function ADD_GEMOLOGIST(diaCode, wholesaler, price){
+function ADD_GEMOLOGIST(diaCode, wholesaler, price, status){
     data = []
     cert = makeCertButton("#","green",true);
-    status = makeStatusButton("NEEDTRANSFER", "")
+    status = makeStatusButton(status, "")
 
     data.push(diaCode, wholesaler, price, status, cert);
     appendToTable(data);
@@ -119,8 +119,8 @@ function ADD_WHOLESALER(diaCode, owner, price, status){
 function CHANGE_WHOLESALER(tr_id, owner, price, status){
     console.log('CHANGE_WHOLESALER("' + tr_id + '","' +owner+ '","'+price+'","'+status+'")');
     //reportData["code"]    = $("#tr_"+tr_id).eq(0).find("td").eq(0).html()
-    $("#"+tr_id).eq(0).find("td").eq(1).html(owner)
-    $("#"+tr_id).eq(0).find("td").eq(2).html(price)
+    if(owner!="") $("#"+tr_id).eq(0).find("td").eq(1).html(owner)
+    if(price!="") $("#"+tr_id).eq(0).find("td").eq(2).html(price)
     if(status=="TORENT"){
         _onclick ="";
     } else {
@@ -132,14 +132,11 @@ function CHANGE_WHOLESALER(tr_id, owner, price, status){
 
 
 function ADD_RETAILER(diaCode, owner, price, status){
+    console.log("ADD_RETAILER")
     data = []
     cert = makeCertButton("#","green",true);
     console.log(TR_ID_CNT)
-    if(status=="TORENT"){
-        _onclick = ' onclick="retailer_rent(\'tr_'+TR_ID_CNT+'\')"';
-    } else {
-        _onclick = "";
-    }
+    _onclick = ' onclick="retailer_rent(\'tr_'+TR_ID_CNT+'\')"';
     console.log(_onclick)
     statusButton = makeStatusButton(status, _onclick);
     data.push(diaCode, owner, price, statusButton, cert);
