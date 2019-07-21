@@ -1,4 +1,4 @@
-function submitReport(callback){
+function submitReport(){
     var reportData = {};  
     reportData["account"      ]  = $('#demo-account')[0].value;
     reportData["code"         ]  = $('#demo-code')[0].value;

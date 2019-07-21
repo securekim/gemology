@@ -60,41 +60,40 @@
 												<tr>
 													<th>DIA Code</th>
 													<th>Wholsaler</th>
-													<th>Rental Deposit</th>
+													<th>Price</th>
 													<th>Status</th>
+													<th>Certificate</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>4091234</td>
-													<td>COSMOS_ewj3w5klfaselk2l1kaaj</td>
-													<td>29.99</td>
-													<td><Button class="button small success icon fa-retweet disabled">Rent</td>
-												</tr>
-												<tr>
+												<tr  id="tr_0">
 													<td>5131234</td>
 													<td>COSMOS_ewj3w5klfaselk2l1kaaj</td>
 													<td>19.99</td>
-													<td><Button class="button small success icon fa-retweet disabled">Rent</td>
+													<td><a onclick="retailer_rent('tr_0')" class="button small success icon fa-retweet disabled">Rent</a></td>
+													<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
-												<tr>
+												<tr  id="tr_1">
 													<td>7142534</td>
 													<td>COSMOS_ewj3w5klfaselk2l1kaaj</td>
                                                     <td>29.99</td>
                                                     <!-- Primary, Secondary -->
-													<td><Button class="button small success icon fa-retweet" onclick="retailer_rent();">Rent</td>
+													<td><a onclick="retailer_rent('tr_1')" class="button small success icon fa-retweet disabled">Rent</a></td>
+														<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
-												<tr>
+												<tr id="tr_2">
 													<td>7544546</td>
 													<td>COSMOS_ewj3w5klfaselk2l1kaaj</td>
 													<td>19.99</td>
-													<td><Button class="button small disabled icon fa-diamond">Sell</td>
+													<td><a onclick="retailer_rent('tr_2')" class="button small success icon fa-retweet">Rent</a></td>
+														<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
-												<tr>
+												<tr id="tr_3">
 													<td>7942634</td>
 													<td>COSMOS_ewj3w5klfaselk2l1kaaj</td>
 													<td>29.99</td>
-													<td><Button class="button small disabled icon fa-diamond">Sell</td>
+													<td><a onclick="retailer_rent('tr_3')" class="button small disabled icon fa-diamond">Sell</a></td>
+													<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
 											</tbody>
 											<!-- <tfoot>
@@ -136,6 +135,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/table.js"></script>
 			<script src="assets/js/sweetalert2.all.min.js"></script>
 			<script src="assets/js/retailer.js"></script>
 

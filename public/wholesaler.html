@@ -55,7 +55,7 @@
 								<section>
 									<h3>Diamond List</h3>
 									<div class="table-wrapper">
-										<table>
+										<table id="table">
 											<thead>
 												<tr>
 													<th>DIA Code</th>
@@ -67,42 +67,41 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
+												<!-- <tr id="tr_0">
 													<td>4091234</td>
-													<td>COSMOS_fsfj3w5kle2asdasdwe1</td>
+													<td>cosmos1ulq2cqqscnvezypu9prcj6jvuyhf5jz7ckak8e</td>
 													<td>29.99</td>
-													<td><Button class="button small secondary icon fa-retweet">Rent</td>
-													<td><Button class="button small success icon fa-download">Cert</Button></td>
+													<td><a onclick="transferCert('tr_0')" class="button small secondary icon fa-retweet">Need Transfer</a></td>
+														<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
-												<tr>
+												<tr id="tr_1">
 													<td>5131234</td>
-													<td>COSMOS_fsfj3w5kle2asdasdwe1</td>
+													<td>cosmos1ulq2cqqscnvezypu9prcj6jvuyhf5jz7ckak8e</td>
 													<td>19.99</td>
-													<td><Button class="button small secondary icon fa-retweet">Rent</td>
-													<td><Button class="button small success icon fa-download">Cert</Button></td>
+													<td><a class="button small secondary icon fa-retweet">To Rent</a></td>
+														<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
-												<tr>
+												<tr id="tr_2">
 													<td>7142534</td>
-													<td>COSMOS_fsfj3w5kle2asdasdwe1</td>
+													<td>cosmos1ulq2cqqscnvezypu9prcj6jvuyhf5jz7ckak8e</td>
                                                     <td>29.99</td>
-                                                    <!-- Primary, Secondary -->
-													<td><Button class="button small secondary icon fa-retweet disabled">Rent</td>
-														<td><Button class="button small success icon fa-download disabled">Cert</Button></td>
+													<td><a class="button small secondary icon fa-retweet disabled">Rented</a></td>
+														<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
-												<tr>
+												<tr id="tr_3">
 													<td>7544546</td>
-													<td>COSMOS_fsfj3w5kle2asdasdwe1</td>
+													<td>cosmos1ulq2cqqscnvezypu9prcj6jvuyhf5jz7ckak8e</td>
 													<td>19.99</td>
-													<td><Button class="button small success icon fa-diamond">Sell</td>
-													<td><Button class="button small success icon fa-download">Cert</Button></td>
+													<td><a class="button small success icon fa-diamond">sold</a></td>
+														<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
 												</tr>
-												<tr>
+												<tr id="tr_4">
 													<td>7942634</td>
-													<td>COSMOS_fsfj3w5kle2asdasdwe1</td>
+													<td>cosmos1ulq2cqqscnvezypu9prcj6jvuyhf5jz7ckak8e</td>
 													<td>29.99</td>
-													<td><Button class="button small success icon fa-diamond">Sell</td>
-													<td><Button class="button small success icon fa-download">Cert</Button></td>
-												</tr>
+													<td><a class="button small success icon fa-diamond">Sell</a></td>
+														<td><a onclick="certClicked('url')" class="button small success icon fa-download">Cert</a></td>
+												</tr> -->
 											</tbody>
 											<!-- <tfoot>
 												<tr>
@@ -118,21 +117,21 @@
 
 
 								<section>
-									<h4>Rental</h4>
-									<form method="post" action="/evaluation">
+									<h4>RENT</h4>
+									<form method="post">
 										<div class="row gtr-uniform">
 											<div class="col-4 col-12-xsmall">
-												<input type="text" name="demo-account" id="demo-account" value="" placeholder="DIA Code" />
+												<input type="text" name="demo-code" id="demo-code" value="" placeholder="DIA Code" />
 											</div>
 											<div class="col-4 col-12-xsmall">
-												<input type="text" name="demo-code" id="demo-code" value="" placeholder="Price" />
+												<input type="text" name="demo-price" id="demo-price" value="" placeholder="Price" />
 											</div>
 											<div class="col-4 col-12-xsmall">
-												<input type="text" name="demo-deposit" id="demo-deposit" value="" placeholder="Deposit" />
+												<input type="text" name="demo-deposit" id="demo-deposit" value="" placeholder="Deposit" readOnly />
 											</div>
 											<div class="col-12">
 												<ul class="actions">
-													<li><input type="submit" value="Rent it" class="primary" /></li>
+													<li><a class="button small success" onclick="submitSell()">Sell it</a></li>
 													<li><input type="reset" value="Reset" /></li>
 												</ul>
 											</div>
@@ -167,6 +166,9 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/sweetalert2.all.min.js"></script>
+			<script src="assets/js/table.js"></script>
+			<script src="assets/js/wholesaler.js"></script>
 
 	</body>
 </html>
