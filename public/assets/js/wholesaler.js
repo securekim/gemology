@@ -6,7 +6,58 @@ $("#demo-price").on("change keyup paste", function() {
     $("#demo-deposit")[0].value = value;
 });
 
+var ws = new WebSocket('ws://localhost:3100');
 
+ws.onmessage = (event) => {
+    let recData = JSON.parse(event.data);
+    console.log(recData);
+    switch (recData.event) {
+        case 'res':
+            Swal.fire({
+                title: 'There is new request',
+                text: "Code :"+ recData.data.code+" Owner : retailer, EnoughMoney ",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, rent it!'
+              }).then((result) => {
+                if (result.value) {
+                    $.ajax({ 
+                        url: '/wholesaler/confirmRent',
+                        type: 'POST',
+                        cache: false, 
+                        data: {code:recData.data.code, account:"retailer"}, 
+                        
+                        success: function(data){
+                            Swal.fire({
+                                position: 'middle',
+                                type: 'success',
+                                title: 'Your act has been requested',
+                                showConfirmButton: false,
+                                timer: 1500
+                              })
+                              status = "RENTED"
+                              console.log(data);
+                              id = searchIDwithCode(data.code)-1;
+                              CHANGE_WHOLESALER("tr_"+id, "retailer", "", status);
+                        }
+                        , error: function(jqXHR, textStatus, err){
+                            alert('text status '+textStatus+', err '+err)
+                        }
+                     })
+                }
+              })
+
+            break;
+        default:
+    }
+}
+
+function isOK(code) {
+    let sendData = {event: 'req', data: {}};
+    ws.send(JSON.stringify(sendData));
+}
 
 init((data)=>{
     console.log(data)
@@ -59,8 +110,7 @@ function transferCert(tr_id){
 
 function searchIDwithCode(code){
     for(i=1; i<$("#table").eq(0).find("tr").length; i++){
-        if(code == $("#table").eq(0).find("tr").eq(i).find("td").html() 
-        && $("#table").eq(0).find("tr").eq(i).find("td").eq(3).html().includes("TRANSFERED")){
+        if(code == $("#table").eq(0).find("tr").eq(i).find("td").html()){
             //$("#table").eq(0).find("tr").eq(2).find("td").eq(3).html().includes("TRANSFERED");
         return i;
         }
@@ -105,7 +155,7 @@ function submitRent(){
                         showConfirmButton: false,
                         timer: 1500
                       })
-                      CHANGE_WHOLESALER("tr_"+id,"wholesaler",reportData.price,"TORENT")
+                      CHANGE_WHOLESALER("tr_"+id,"wholesaler",data.price,"TORENT")
                 }
                 , error: function(jqXHR, textStatus, err){
                     alert('text status '+textStatus+', err '+err)

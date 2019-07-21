@@ -6,14 +6,23 @@ var blockchain = require('./blockchain.js');
 var express = require('express');
 var app = express();
 var bodyparser = require('body-parser');
+var WebSocketServer = require('ws').Server;
+var blockchain = require('./blockchain.js');
+
+var wss = new WebSocketServer({port: 3100});
 var urlencodedparser = bodyparser.urlencoded({extended:false})
 var CODES = [
-    // {
-    // code : "123",
-    // account : "cosmos123",
-    // price : "123",
-    // status : "" 
-    // }
+    {
+    code : "123",
+    account : "cosmos123",
+    price : "123",
+    status : "" 
+    }, {
+    code : "123",
+    account : "cosmos123",
+    price : "123",
+    status : "" 
+    }
 ]
 var ACCOUNTS = [
 
@@ -72,11 +81,30 @@ app.post('/wholesaler/rent',urlencodedparser, (req,res)=>{
     console.log(req.body);
     idx = search(req.body.code);
     CODES[idx].status = "TORENT";
-    res.send(200, '블록체인에 등록 중입니다. 몇 주만 기다려 주세요.');  
+    res.send(200, {code:req.body.code, price:req.body.price});  
+});
+
+
+app.post('/wholesaler/confirmRent',urlencodedparser, (req,res)=>{
+    //req.body.value
+    console.log(req.body);
+    idx = search(req.body.code);
+    CODES[idx].status = "RENTED";
+    CODES[idx].account = req.body.account;
+    res.send(200, {code:req.body.code});  
 });
 
 app.get('/codes',(req,res)=>{
     res.send(CODES);
+
+    
+    blockchain.gemologist_getList(function(err, resultArr, stderr) {
+     if(err){
+         res.send(500, stderr);
+      }
+      res.send(200, resultArr.toString());  
+    });
+    console.log(req.body);
 })
 
 //다른 경로를 요청했을때, 실제 그 경로에 있는 파일을 전달합니다.
@@ -88,4 +116,30 @@ app.get('/*', function(req, res) {
  });
 });
  
+
+wss.on('connection', (ws) => {
+    ws.on('message', (message) => {
+        let sendData = {event: 'res', data: null};
+        message = JSON.parse(message);
+        switch (message.event) {
+            case 'open':
+                console.log("Received: %s", message.event);
+                break;
+            case "req":
+                sendData.data = message.data;
+                ws.send(JSON.stringify(sendData));
+                break;
+            case "rent":
+            sendData.data = message.data;
+            wss.clients.forEach(function each(client) {
+                  client.send(JSON.stringify(sendData));
+              });
+            break;
+            default:
+        }
+    });
+});
+
+
+
 app.listen(80); //1024 이하의 포트는 특정 cap 권한이 필요합니다.

@@ -1,3 +1,11 @@
+
+init((data)=>{
+    console.log(data)
+    for(var i in data){
+        ADD_GEMOLOGIST(data[i].code, data[i].account, data[i].price, data[i].status);
+    }
+});
+
 function submitReport(){
     var reportData = {};  
     reportData["account"      ]  = $('#demo-account')[0].value;
@@ -34,7 +42,7 @@ function submitReport(){
                         showConfirmButton: false,
                         timer: 1500
                       })
-                      ADD_GEMOLOGIST(reportData.code,reportData.account,reportData.price)
+                      ADD_GEMOLOGIST(reportData.code,reportData.account,reportData.price,"NEEDTRANSFER")
                 }
                 , error: function(jqXHR, textStatus, err){
                     alert('text status '+textStatus+', err '+err)
