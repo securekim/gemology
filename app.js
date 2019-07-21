@@ -1,7 +1,9 @@
 
 //////////////////
 
-var express = require('express')
+var blockchain = require('./blockchain.js');
+
+var express = require('express');
 var app = express();
 var bodyparser = require('body-parser');
 var urlencodedparser = bodyparser.urlencoded({extended:false})
@@ -43,29 +45,26 @@ app.post('/ajax', urlencodedparser, function (req, res){
 
 ///////////////////
 
-
-app.post('/retailer/rent',urlencodedparser, (req,res)=>{
-    //req.body.value
+app.get('/gemologist/getcodes',urlencodedparser, (req,res)=>{
+    blockchain.gemologist_getList(function(err, resultArr, stderr) {
+        if(err){
+            res.send(500, stderr);
+         }
+         res.send(200, resultArr.toString());  
+       });
     console.log(req.body);
-    res.send(200, '블록체인에 등록 중입니다. 몇 주만 기다려 주세요.');  
 });
-
 
 app.post('/gemologist/report',urlencodedparser, (req,res)=>{
-    //req.body.value
+    var measures = {carat: req.body.carat, cut: req.body.cut.replace(' ',''), clarity: req.body.clarity.replace(' ',''), fluorescence: req.body.fluorescence, priority: req.body.priority};
+    blockchain.gemologist_buyCode(req.body.code, req.body.price, 'gemologist', measures,function(err, stdout, stderr) {
+        if(err){
+            res.send(500, stderr);
+         }
+         res.send(200, stdout);  
+       });
     console.log(req.body);
-    if(search(req.body.code) == -1){
-        CODES.push({code : req.body.code, account : req.body.account, price : req.body.price, status:"NEEDTRANSFER"});
-        res.send(200, '블록체인에 등록 중입니다. 몇 주만 기다려 주세요.');
-    }
-});
-
-app.post('/wholesaler/transfer',urlencodedparser, (req,res)=>{
-    //req.body.value
-    console.log(req.body);
-    idx = search(req.body.code);
-    CODES[idx].status = "TRANSFERED";
-    res.send(200, '블록체인에 등록 중입니다. 몇 주만 기다려 주세요.');  
+    res.send(200, '블록체인에 등록 중입니다. 몇 주만 기다려 주세요.');
 });
 
 app.post('/wholesaler/rent',urlencodedparser, (req,res)=>{

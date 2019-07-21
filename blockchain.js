@@ -56,13 +56,15 @@ exports.gemologist_buyCode = function(code, price, name, measures, callback){
 };
 
 //getCodes, getCode
-exports.gemologist_getList = async function(callback){
+exports.gemologist_getList = function(callback){
+    var resultArr = new Array();
     getCodes((err, stdout, stderr)=>{
-        if(err) return callback(stdout);
-        var resultArr = [];
-        for(var i in stdout){
-            await getCode(stdout[i], (err, stdout, stderr)=>{
-                if(!err) resultArr.push(stdout);
+        if(err) return callback(stderr);
+        var codes = stdout.split('"');
+        for(var i in codes){
+            if(codes[i].search('\n') != -1) continue;
+            getCode(codes[i], (code)=>{
+                resultArr.push(code.toString());
             })
         }
         callback(err, resultArr, stderr);
@@ -95,32 +97,24 @@ exports.getAccount = function getAccount(name,callback){
 }
 
 function buyCode(code, price, name, callback){
-    exec(nscli+' tx nameservice buy-code '+code+' '+price+'nametoken --from '+name,(err,stdout,stderr)=>{
+    ps.exec(dccli+' tx nameservice buy-code '+code+' '+price+'nametoken --from '+name,(err,stdout,stderr)=>{
         callback(err, stdout, stderr);
     });
 }
 
 function setCode(code, measures, name, callback){
-    exec(nscli+' tx nameservice set-code '+code+' '+measures+' --from '+name, (err, stdout, stderr)=>{
+    ps.exec(dccli+' tx nameservice set-code '+code+' '+measures.carat+' '+measures.cut+' '+measures.clarity+' '+measures.fluorescence+' '+measures.priority+' --from '+name, (err, stdout, stderr)=>{
         callback(err, stdout, stderr);
     })
 }
 
 function getCodes(callback){
-    // [
-    //     "code12",
-    //     "code13"
-    // ]
-    exec(nscli+' query nameservice codes', (err, stdout, stderr)=>{
+    ps.exec(dccli+' query nameservice codes', (err, stdout, stderr)=>{
         callback(err, stdout, stderr);
     })
 }
 
 //nscli query nameservice whichis $code
-function getCode(code){
-    return new Promise((resolve) => {
-        exec(nscli+' query nameservice whichis '+code, (err, stdout, stderr)=>{
-            resolve(err, stdout, stderr);
-        })
-     });
+function getCode(code, callback){
+    return callback(ps.execSync(dccli+' query nameservice whichis '+code));
 }
