@@ -46,7 +46,7 @@ app.post('/ajax', urlencodedparser, function (req, res){
 app.get('/gemologist/getcodes',urlencodedparser, (req,res)=>{
     blockchain.gemologist_getList(function(err, resultArr, stderr) {
         if(err){
-            res.send(500, stderr);
+            res.send(200, stderr);
          } else {
          res.send(200, resultArr.toString());  
          }
@@ -58,7 +58,7 @@ app.post('/gemologist/report',urlencodedparser, (req,res)=>{
     var measures = {carat: req.body.carat.replace(/ /gi,""), cut: req.body.cut.replace(/ /gi,""), clarity: req.body.clarity.replace(/ /gi,""), fluorescence: req.body.fluorescence.replace(/ /gi,""), priority: req.body.priority};
     blockchain.gemologist_buyCode(req.body.code, req.body.price, 'gemologist', measures,function(err, stdout, stderr) {
         if(err){
-            res.send(500, stderr);
+            res.send(200, stderr);
          } else {
             res.send(200, stdout);
          }

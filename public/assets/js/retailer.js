@@ -20,7 +20,7 @@
 // }
 
 
-var ws = new WebSocket('ws://localhost:3100');
+var ws = new WebSocket('ws://dia.securekim.com:3100');
 
 ws.onmessage = (event) => {
     console.log(event.data);

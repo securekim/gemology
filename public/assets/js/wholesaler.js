@@ -6,7 +6,7 @@ $("#demo-price").on("change keyup paste", function() {
     $("#demo-deposit")[0].value = value;
 });
 
-var ws = new WebSocket('ws://localhost:3100');
+var ws = new WebSocket('ws://dia.securekim.com:3100');
 
 ws.onmessage = (event) => {
     let recData = JSON.parse(event.data);
