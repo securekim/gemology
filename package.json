@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "sweetalert2": "^8.13.5",
     "ws": "^7.1.1"
   }
